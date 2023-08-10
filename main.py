@@ -54,7 +54,7 @@ while True:
                 pass
 
     if nav == '2':
-        
+        pass
 
     if nav == "4":
         break
