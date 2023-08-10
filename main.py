@@ -1,5 +1,5 @@
 import sqlite3
-# from insert_on_table import insert_table
+from insert_on_table import insert_table
 # from update_table import update_table
 from configs import TABLE_NAME, DB_FILE
 
@@ -22,7 +22,7 @@ cursor.execute(
             ')'
         )
 connection.commit()
-# insert_table()
+insert_table()
 
 # update_table()
 
