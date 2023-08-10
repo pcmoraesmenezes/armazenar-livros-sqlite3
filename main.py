@@ -2,8 +2,9 @@ import sqlite3
 from insert_on_table import insert_table
 from update_table import update_table
 from configs import TABLE_NAME, DB_FILE, print_text, print_horizontal_line
-from configs import clear_terminal
+from configs import clear_terminal, print_table_after_changes
 from read_table import read_table
+
 
 connection = sqlite3.connect(DB_FILE)
 cursor = connection.cursor()
@@ -25,7 +26,6 @@ cursor.execute(
 )
 connection.commit()
 while True:
-    clear_terminal()
     print_horizontal_line()
     print_text()
     print("To View your DataBase press (1)")
@@ -38,12 +38,11 @@ while True:
         clear_terminal()
         while True:
             read_table()
-            print('\nDo you want see another information? Yes or No')
+            print('\nDo you want to see another information? Yes or No')
             nav = input()
 
             if nav.lower() == 'y' or nav.lower() == 'yes':
                 pass
-
             else:
                 print('Are you sure? ')
                 nav = input()
@@ -51,12 +50,39 @@ while True:
                 if nav.lower() == 'y' or nav.lower() == 'yes':
                     break
 
+    if nav == '2':
+        clear_terminal()
+        while True:
+            update_table()
+            print('Do you want to change something else? Yes or No')
+            nav = input()
+            if nav.lower() == 'y' or nav.lower() == 'yes':
+                pass
+            else:
+                print('Are you sure? Yes or No ')
+                nav = input()
+                if nav.lower() == 'y' or nav.lower() == 'yes':
+                    print('Table after changes:')
+                    print_table_after_changes()
+                    break
+    if nav == '3':
+        clear_terminal()
+        while True:
+            insert_table()
+            print('Do you want to insert more informations? Yes or No ')
+            nav = input()
+            if nav.lower() == 'y' or nav.lower() == 'yes':
+                pass
+            else:
+                print('Are you sure? Yes or No')
+                nav = input()
+                if nav.lower() == 'y' or nav.lower() == 'yes':
+                    print('Table after changes: ')
+                    print_table_after_changes()
+                    break
                 pass
 
-    if nav == '2':
-        pass
-
-    if nav == "4":
+    if nav == '4':
         break
 
 cursor.close()
