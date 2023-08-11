@@ -35,6 +35,7 @@ Install the required dependencies:
 bash
 Copy code
 pip install -r requirements.txt
+create a file named 'db.sqlite3' to be your db
 Usage
 Run the main program:
 
