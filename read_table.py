@@ -16,7 +16,6 @@ def read_table():
     answer = input()
 
     if answer == "1":
-        # Option 1: Print all books info
         cursor.execute(
             f"SELECT title, author, genre, "
             f"start_date, end_date, rating, pages, language, format "
@@ -36,7 +35,6 @@ def read_table():
         print(tabulate(table_data, headers=headers, tablefmt="grid"))
 
     if answer == "2":
-        # Option 2: Search for a book by Title
         book_title = input("Enter the title of the book: ")
         cursor.execute(
             f"SELECT title, author, genre, "
@@ -63,7 +61,6 @@ def read_table():
         choice = input()
 
         if choice == "1":
-            # Option 3.1: List all books by Genre
             genre = input("Enter the genre: ")
             cursor.execute(
                 f"SELECT title, author, genre, "
@@ -90,7 +87,6 @@ def read_table():
                 print('Genre not found ')
 
         if choice == "2":
-            # Option 3.2: List all books by Author
             author = input("Enter the author: ")
             cursor.execute(
                 f"SELECT title, author, genre, "
@@ -116,7 +112,6 @@ def read_table():
                 print('Author not found')
 
         if choice == "3":
-            # Option 3.3: List all books by Format
             book_format = input("Enter the format: ")
             cursor.execute(
                 f"SELECT title, author, genre, "
@@ -144,7 +139,6 @@ def read_table():
                 print('Format not found')
 
         if choice == "4":
-            # Option 3.4: List all books by Language
             language = input("Enter the language: ")
             cursor.execute(
                 f"SELECT title, author, genre, "
@@ -169,5 +163,3 @@ def read_table():
                 print('Language not found')
     cursor.close()
     connection.close()
-
-# Rest of your code...
