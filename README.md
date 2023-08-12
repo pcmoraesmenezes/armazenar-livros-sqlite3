@@ -1,3 +1,4 @@
+
 # Book Database Management System
 
 Welcome to the Book Database Management System! This is a Python-based project that allows you to store, retrieve, update, and manage information about books in a SQLite database.
@@ -30,26 +31,36 @@ The Book Database Management System is a command-line application that offers an
 
    ```bash
    git clone https://github.com/pcmoraesmenezes/armazenar-livros-sqlite3.git
-Install the required dependencies:
+   ```
 
-bash
-Copy code
-pip install -r requirements.txt
-create a file named 'db.sqlite3' to be your db
-Usage
-Run the main program:
+2. Install the required dependencies:
 
-bash
-Copy code
-python main.py
-Follow the on-screen instructions to navigate through the application's menu.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Use the provided options to view, update, and insert book information in the database.
+3. Create a file named `db.sqlite3` to be your database file.
 
-Enjoy managing your book collection seamlessly!
+## Usage
 
-Contributing
+1. Run the main program:
+
+   ```bash
+   python main.py
+   ```
+
+2. Follow the on-screen instructions to navigate through the application's menu.
+
+3. Use the provided options to view, update, and insert book information in the database.
+
+4. Enjoy managing your book collection seamlessly!
+
+## Contributing
+
 Contributions are welcome! If you have any ideas or improvements, feel free to submit a pull request. Please make sure to follow the Code of Conduct and Contributing Guidelines before contributing.
 
-License
+## License
+
 This project is licensed under the MIT License.
+```
+Developed by Paulo César Moraes de Menezes.
