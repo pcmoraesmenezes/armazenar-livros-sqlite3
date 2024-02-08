@@ -4,27 +4,14 @@ from update_table import update_table
 from configs import TABLE_NAME, DB_FILE, print_text, print_horizontal_line
 from configs import clear_terminal, print_table_after_changes
 from read_table import read_table
+from create_database import create_database_
 
 
 connection = sqlite3.connect(DB_FILE)
 cursor = connection.cursor()
 
-cursor.execute(
-    f"CREATE TABLE IF NOT EXISTS {TABLE_NAME}"
-    "("
-    "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    "title TEXT NOT NULL,"
-    "author TEXT NOT NULL,"
-    "genre TEXT,"
-    "start_date DATE,"
-    "end_date DATE,"
-    "rating REAL,"
-    "pages INTEGER,"
-    "language TEXT,"
-    "format TEXT"
-    ")"
-)
-connection.commit()
+create_database_(cursor, connection)
+
 while True:
     print_horizontal_line()
     print_text()
