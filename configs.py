@@ -8,6 +8,9 @@ ROOT_DIR = Path(__file__).parent
 DB_NAME = "db.sqlite3"
 DB_FILE = ROOT_DIR / DB_NAME
 TABLE_NAME = "books"
+AUTHORS_TABLE = "authors"
+GENRES_TABLE = "genres"
+LANGUAGES_TABLE = "languages"
 
 
 def clear_terminal():
