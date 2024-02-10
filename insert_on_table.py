@@ -1,16 +1,27 @@
 import sqlite3
-from configs import TABLE_NAME, DB_FILE, clear_terminal
+from configs import (
+    TABLE_NAME,
+    DB_FILE,
+    clear_terminal,
+    AUTHORS_TABLE,
+    GENRES_TABLE,
+    LANGUAGES_TABLE
+)
 
 
 def insert_table():
     connection = sqlite3.connect(DB_FILE)
     cursor = connection.cursor()
-    sql = (
-        f'INSERT INTO {TABLE_NAME} '
-        '(title, author, genre, start_date, end_date,'
-        'rating, pages, language, format) '
-        'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    )
+
+    insertions = {
+        "author": f"INSERT INTO {AUTHORS_TABLE} (name) VALUES (?)",
+        "genre": f"INSERT INTO {GENRES_TABLE} (name) VALUES (?)",
+        "language": f"INSERT INTO {LANGUAGES_TABLE} (name) VALUES (?)",
+        "book": f"INSERT INTO {TABLE_NAME} (title, id_author, id_genre, "
+                "start_date, end_date, rating, pages, id_language, format) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    }
+
     try:
         title = input('Title: ')
         author = input('Author: ')
