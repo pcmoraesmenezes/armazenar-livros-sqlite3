@@ -1,6 +1,12 @@
 import sqlite3
 from tabulate import tabulate  # type: ignore
-from configs import TABLE_NAME, DB_FILE
+from configs import (
+    TABLE_NAME,
+    DB_FILE,
+    AUTHORS_TABLE,
+    GENRES_TABLE,
+    LANGUAGES_TABLE
+)
 
 
 def read_table():
@@ -17,10 +23,16 @@ def read_table():
 
     if answer == "1":
         cursor.execute(
-            f"SELECT title, author, genre, "
-            f"start_date, end_date, rating, pages, language, format "
-            f"FROM {TABLE_NAME} "
+            f"SELECT {TABLE_NAME}.title, {AUTHORS_TABLE}.name, "
+            f"{GENRES_TABLE}.name, start_date, end_date, rating, pages, "
+            f"{LANGUAGES_TABLE}.name "
+            f"FROM {TABLE_NAME}, {AUTHORS_TABLE}, "
+            f"{GENRES_TABLE}, {LANGUAGES_TABLE} "
+            f"WHERE {TABLE_NAME}.id_author = {AUTHORS_TABLE}.id "
+            f"AND {TABLE_NAME}.id_genre = {GENRES_TABLE}.id "
+            f"AND {TABLE_NAME}.id_language = {LANGUAGES_TABLE}.id; "
         )
+
         books = cursor.fetchall()
 
         headers = [
