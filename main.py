@@ -1,5 +1,5 @@
 import sqlite3
-from insert_on_table import insert_table
+from insert_on_table import navegate_menu
 from update_table import update_table
 from configs import TABLE_NAME, DB_FILE, print_text, print_horizontal_line
 from configs import clear_terminal, print_table_after_changes
@@ -55,7 +55,7 @@ while True:
     if nav == '3':
         clear_terminal()
         while True:
-            insert_table()
+            navegate_menu()
             print('Do you want to insert more informations? Yes or No ')
             nav = input()
             if nav.lower() == 'y' or nav.lower() == 'yes':
