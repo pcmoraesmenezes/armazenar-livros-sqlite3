@@ -9,80 +9,97 @@ from configs import (
 )
 
 
-def insert_table():
+def insert_into_author_table():
     connection = sqlite3.connect(DB_FILE)
     cursor = connection.cursor()
 
-    insertions = {
-        "author": f"INSERT INTO {AUTHORS_TABLE} (name) VALUES (?)",
-        "genre": f"INSERT INTO {GENRES_TABLE} (name) VALUES (?)",
-        "language": f"INSERT INTO {LANGUAGES_TABLE} (name) VALUES (?)",
-        "book": f"INSERT INTO {TABLE_NAME} (title, id_author, id_genre, "
-                "start_date, end_date, rating, pages, id_language, format) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    }
+    authors_ = input("Author name: ")
 
-    try:
-        title = input('Title: ')
-        author = input('Author: ')
-        genre = input('Genre: ')
-        start_date = input('Start Date: ')
-        end_date = input('End Date: ')
-        rating = input('Rating: ')
-        pages = input('Pages: ')
-        language = input('Language: ')
-        book_format = input('Format: ')
+    cursor.execute(
+        f"INSERT INTO {AUTHORS_TABLE} (name) VALUES (?);",
+        (authors_,)
+    )
 
-        values = (title, author, genre, start_date, end_date, rating,
-                  pages, language, book_format)
+    connection.commit()
+    connection.close()
 
-        clear_terminal()
-        print('-'*50, '\nBook that will be inserted:')
-        for field, value in zip(['Title', 'Author', 'Genre',
-                                'Start Date', 'End Date', 'Rating', 'Pages',
-                                 'Language', 'Format'], values):
-            print(f"{field}: {value}")
 
-        print('Do you want to change some info? Yes or No?')
-        choice = input()
+def insert_into_genre_table():
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
 
-        while choice.lower() in ('yes', 'y'):
-            clear_terminal()
-            print('Choose the field to change:')
-            print('1. Title\n2. Author\n3. Genre\n4. Start Date')
-            print('5. End Date\n6. Rating\n7. Pages\n8. Language\n9. Format')
-            field_choice = int(input())
+    genres_ = input("Genre name: ")
 
-            if 1 <= field_choice <= 9:
-                new_value = input(f'Enter new {field_choice}: ')
-                values = list(values)
-                values[field_choice - 1] = new_value
-                values = tuple(values)
-                print('Field updated.')
+    cursor.execute(
+        f"INSERT INTO {GENRES_TABLE} (name) VALUES (?);",
+        (genres_,)
+    )
 
-            print('Do you want to change another field? Yes or No?')
-            choice = input()
+    connection.commit()
+    connection.close()
 
-        print('Confirm insertion? Yes or No')
-        confirm_choice = input()
 
-        clear_terminal()
+def insert_into_language_table():
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
 
-        if confirm_choice.lower() == 'yes' or confirm_choice.lower() == 'y':
-            cursor.execute(sql, values)
-            connection.commit()
+    languages_ = input("Language name: ")
 
-            clear_terminal()
+    cursor.execute(
+        f"INSERT INTO {LANGUAGES_TABLE} (name) VALUES (?);",
+        (languages_,)
+    )
 
-            print('Book inserted into the database.')
-        else:
-            clear_terminal()
+    connection.commit()
+    connection.close()
 
-            print('Insertion cancelled.')
 
-    except Exception as e:
-        print('An error occurred:', e)
+def insert_into_book_table():
+    connection = sqlite3.connect(DB_FILE)
+    cursor = connection.cursor()
 
-    finally:
-        cursor.close()
-        connection.close()
+    title = input("Title: ")
+    id_author = input("Author id: ")
+    id_genre = input("Genre id: ")
+    start_date = input("Start date: ")
+    end_date = input("End date: ")
+    rating = input("Rating: ")
+    pages = input("Pages: ")
+    id_language = input("Language id: ")
+    id_format = input("Format id: ")
+
+    cursor.execute(
+        f"INSERT INTO {TABLE_NAME} (title, id_author, id_genre, start_date, "
+        f"end_date, rating, pages, id_language, id_format) "
+        f"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        (title, id_author, id_genre, start_date,
+            end_date, rating, pages, id_language, id_format)
+    )
+
+    connection.commit()
+    connection.close()
+
+
+def navegate_menu():
+    clear_terminal()
+    print("1 - Insert into author table")
+    print("2 - Insert into genre table")
+    print("3 - Insert into language table")
+    print("4 - Insert into book table")
+    print("5 - Exit")
+    option = input("Choose an option: ")
+
+    if option == "1":
+        insert_into_author_table()
+    elif option == "2":
+        insert_into_genre_table()
+    elif option == "3":
+        insert_into_language_table()
+    elif option == "4":
+        insert_into_book_table()
+    elif option == "5":
+        print("Exiting...")
+        exit()
+    else:
+        print("Invalid option")
+        navegate_menu()
