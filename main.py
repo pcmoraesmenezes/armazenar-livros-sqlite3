@@ -1,7 +1,7 @@
 import sqlite3
 from insert_on_table import navegate_menu
 from update_table import update_table
-from configs import TABLE_NAME, DB_FILE, print_text, print_horizontal_line
+from configs import DB_FILE, print_text, print_horizontal_line
 from configs import clear_terminal, print_table_after_changes
 from read_table import read_table
 from create_database import create_database_
@@ -71,6 +71,3 @@ while True:
 
     if nav == '4':
         break
-
-cursor.close()
-connection.close()
